@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ultima Partita - Corbiolo C5</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="js/supabase-client.js"></script>
+</head>
+<body>
+  <h1>📊 Ultima Partita</h1>
+  <div id="ultima"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const { data } = await supabase.from("partite").select("*").order("data", { ascending: true });
+      const oggi = new Date();
+      const ultima = [...data].reverse().find(p => new Date(p.data) < oggi);
+      const div = document.getElementById("ultima");
+      if (ultima) {
+        div.innerHTML = `<p>${ultima.data} - ${ultima.avversario} - Risultato: ${ultima.risultato}</p>`;
+      } else {
+        div.innerText = "Nessuna partita disputata.";
+      }
+    });
+  </script>
+</body>
+</html>
