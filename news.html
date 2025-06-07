@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>News - Corbiolo C5</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="js/supabase-client.js"></script>
+</head>
+<body>
+  <h1>📰 News</h1>
+  <div id="lista-news"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const { data, error } = await supabase.from("news").select("*").order("data", { ascending: false });
+      const container = document.getElementById("lista-news");
+      if (error) return (container.innerHTML = "Errore nel caricamento delle news.");
+      container.innerHTML = data.map(n => `<article><h3>${n.titolo}</h3><p>${n.testo}</p><small>${n.data}</small></article>`).join("");
+    });
+  </script>
+</body>
+</html>

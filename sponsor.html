@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sponsor - Corbiolo C5</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="js/supabase-client.js"></script>
+</head>
+<body>
+  <h1>💰 Sponsor</h1>
+  <div id="lista-sponsor" style="display: flex; gap: 20px;"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const { data } = await supabase.from("sponsor").select("*");
+      const container = document.getElementById("lista-sponsor");
+      container.innerHTML = data.map(s => `<div><a href="${s.link}" target="_blank"><img src="${s.logo}" style="width:100px;"><p>${s.nome}</p></a></div>`).join("");
+    });
+  </script>
+</body>
+</html>

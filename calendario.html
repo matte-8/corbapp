@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calendario - Corbiolo C5</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="js/supabase-client.js"></script>
+</head>
+<body>
+  <h1>📅 Calendario</h1>
+  <ul id="calendario-partite"></ul>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const { data } = await supabase.from("partite").select("*").order("data", { ascending: true });
+      const lista = document.getElementById("calendario-partite");
+      lista.innerHTML = data.map(p => `<li>${p.data} - ${p.avversario} - ${p.luogo || ''}</li>`).join("");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prossima Partita - Corbiolo C5</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="js/supabase-client.js"></script>
+</head>
+<body>
+  <h1>📅 Prossima Partita</h1>
+  <div id="dettagli-partita"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const { data } = await supabase.from("partite").select("*").order("data", { ascending: true });
+      const oggi = new Date();
+      const prossima = data.find(p => new Date(p.data) >= oggi);
+      const container = document.getElementById("dettagli-partita");
+      if (prossima) {
+        container.innerHTML = `<p>${prossima.data} - ${prossima.avversario}</p>`;
+      } else {
+        container.innerText = "Nessuna prossima partita.";
+      }
+    });
+  </script>
+</body>
+</html>
