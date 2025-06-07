@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="js/supabase-client.js"></script>
+  <script defer src="js/admin.js"></script>
+</head>
+<body>
+  <h1>Gestione Contenuti</h1>
+  <input type="password" id="admin-pass" placeholder="Inserisci password" />
+  <div id="admin-panel" class="hidden">
+    <select id="sezione">
+      <option value="news">News</option>
+      <option value="partite">Partite</option>
+      <option value="sponsor">Sponsor</option>
+    </select>
+    <div id="form-container"></div>
+  </div>
+</body>
+</html>

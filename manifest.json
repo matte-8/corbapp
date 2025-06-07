@@ -1,0 +1,13 @@
+{
+  "name": "Corbiolo C5",
+  "short_name": "Corbiolo",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#1f1914",
+  "theme_color": "#800000",
+  "icons": [{
+    "src": "img/logo.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }]
+}
